@@ -51,6 +51,7 @@ def get_detail_info(dic):
     try:
         r = requests.get(detail_url, headers=HEADERS)
     except RequestException:
+        print('{} 网页不能访问!!'.format(detail_url))
         return
     # item页面设计的比较好，页面内的图片的url，用BeautifulSoup取不出来，隐藏在doc-->Resoponse的一个字典中，这里用正则匹配查找出来
     pics = [i.split('&')[0] for i in re.findall('http://p3.*?&', r.text)]
